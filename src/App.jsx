@@ -46,10 +46,15 @@ function App() {
       url: sunUrl,
       method: 'GET',
       dataResponse: 'json',
-      params: { lat, lng }
+      params: { lat, lng, formatted: 0 }
     })
     console.log(sunResponse)
+
+    const sunrise = sunResponse.data.results.sunrise
+    const sunset = sunResponse.data.results.sunset 
+
   }
+
 
   return (
     <form onSubmit={handleSubmit}>
