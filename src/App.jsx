@@ -6,23 +6,50 @@ const geoUrl = ' https://geocode.maps.co/search'
 const sunUrl = 'https://api.sunrise-sunset.org/json'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [places, setPlaces] = useState([])
+  const [input, setInput] = useState('')
+  const [showSuggestions, setShowSuggestions] = useState(false)
 
-  useEffect(() => {
-    axios ({
-      url: url,
+  const handleInputChange = async (event) => {
+    const userAddress = event.target.value
+    setInput(userAddress)
+    setShowSuggestions(true)
+
+    try {
+      const geoResponse = await axios({
+        url: geoUrl,
+        method: 'GET',
+        dataResponse: 'json',
+        params: { q: userAddress }
+      })
+      setPlaces(geoResponse.data)
+    }
+    
+    catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    console.log(places)
+
+    const place_id = parseInt(event.nativeEvent.submitter.value)
+    const selected = places.find(place => place.place_id === place_id)
+    const { lat, lon: lng } = selected
+
+    setInput(selected.display_name)
+    setShowSuggestions(false)
+    console.log(selected)
+
+    const sunResponse = await axios({
+      url: sunUrl,
       method: 'GET',
       dataResponse: 'json',
-      params: {
-        key: apiKey,
-        lat: '52.47944744483806',
-        lon: '13.213967739855434',
-      }
-    }).then((response) => {console.log(response.data)})
-      .catch((error) => console.log(error))
-  }, [])
-
-  // const apiUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=YOUR_API_KEY`
+      params: { lat, lng }
+    })
+    console.log(sunResponse)
+  }
 
   return (
     <>
