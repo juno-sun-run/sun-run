@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
 
-const apiKey = '5c1ff5d0518447f4acc8eb16766c0f66'
-const url = 'https://api.geoapify.com/v1/geocode/reverse'
+const geoUrl = ' https://geocode.maps.co/search'
+const sunUrl = 'https://api.sunrise-sunset.org/json'
 
 function App() {
   const [count, setCount] = useState(0)
