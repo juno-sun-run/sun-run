@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    flex-flow: column;
+    max-width: 20rem;
+}
+
+input {
+}
+
+.suggestions {
+    display: flex;
+    flex-flow: column;
+}
+
+.suggestions button {
+
+}

@@ -52,9 +52,21 @@ function App() {
   }
 
   return (
-    <>
-      
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={input}
+        onChange={handleInputChange}
+        placeholder="Enter your address"
+      />
+      {showSuggestions ? <div className='suggestions'>
+        {
+          places.map(({display_name, place_id}) => (
+            <button key={place_id} type='submit' value={place_id}>{display_name}</button>
+          ))
+        }
+      </div> : null }
+    </form>
   )
 }
 
