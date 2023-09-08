@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import DatePicker from "react-widgets/DatePicker";
+import Calendar from "react-widgets/Calendar";
 import "react-widgets/styles.css";
 
 const geoUrl = " https://geocode.maps.co/search";
@@ -75,8 +75,7 @@ function App() {
           </div>
         ) : null}
       </form>
-
-      <DatePicker placeholder="m/dd/yy" />
+      <Calendar />;
     </div>
   );
 }
