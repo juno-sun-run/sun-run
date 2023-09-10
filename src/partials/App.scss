@@ -12,5 +12,18 @@ input {
   flex-flow: column;
 }
 
-.suggestions button {
+.runTime {
+  display: flex;
+  flex-flow: row;
+
+  .sunrise, .sunset {
+    font-size: 11rem;
+    font-weight: 600;
+    color: orange;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
 }
