@@ -79,12 +79,12 @@ function App() {
               ))}
             </div>
           ) : null}
-          <DatePicker placeholder="m/dd/yy" />
           <div className='runTime'>
             <button className="sunrise"><Sunrise /></button>
             <button className="sunset"><Sunset /></button>
           </div>
         </form>
+        <Calendar />
       </div>
     </>
   );
