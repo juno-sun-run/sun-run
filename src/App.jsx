@@ -3,6 +3,9 @@ import "../styles/App.css";
 import axios from "axios";
 import Calendar from "react-widgets/Calendar";
 import "react-widgets/styles.css";
+import Header from "./components/Header";
+import Sunrise from './assets/Sunrise'
+import Sunset from './assets/Sunset'
 
 const geoUrl = " https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
@@ -57,26 +60,33 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Enter your address"
-        />
-        {showSuggestions ? (
-          <div className="suggestions">
-            {places.map(({ display_name, place_id }) => (
-              <button key={place_id} type="submit" value={place_id}>
-                {display_name}
-              </button>
-            ))}
+    <>
+      <Header />
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Enter your address"
+          />
+          {showSuggestions ? (
+            <div className="suggestions">
+              {places.map(({ display_name, place_id }) => (
+                <button key={place_id} type="submit" value={place_id}>
+                  {display_name}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          <div className='runTime'>
+            <button className="sunrise"><Sunrise /></button>
+            <button className="sunset"><Sunset /></button>
           </div>
-        ) : null}
-      </form>
-      <Calendar />;
-    </div>
+        </form>
+        <Calendar />
+      </div>
+    </>
   );
 }
 
