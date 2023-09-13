@@ -14,6 +14,7 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [date, setDate] = useState(new Date())
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
