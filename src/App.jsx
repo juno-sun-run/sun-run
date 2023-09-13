@@ -54,7 +54,9 @@ function App() {
       url: sunUrl,
       method: "GET",
       dataResponse: "json",
-      params: { lat, lng, formatted: 0 },
+      params: { lat, lng, formatted: 0,
+        date: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+      },
     });
     console.log(sunResponse);
 
@@ -69,6 +71,10 @@ function App() {
       <Header />
       <div>
         <form onSubmit={handleSubmit}>
+          <Calendar 
+          className="calendar"
+          onChange={handleDateChange} 
+          />
           <input
             type="text"
             value={input}
