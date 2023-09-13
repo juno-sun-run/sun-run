@@ -33,6 +33,10 @@ function App() {
     }
   };
 
+  const handleDateChange = (newDate) => {
+    setDate(newDate)
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(places);
