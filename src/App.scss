@@ -1,12 +1,14 @@
 @use '../styles/partials/_setup.scss';
 
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
 form {
   display: flex;
   flex-flow: column;
-  max-width: 20rem;
-}
-
-input {
+  max-width: 50%;
 }
 
 .suggestions {

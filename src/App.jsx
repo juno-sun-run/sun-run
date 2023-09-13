@@ -68,8 +68,8 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div>
+      <div className="wrapper">
+        <Header />
         <form onSubmit={handleSubmit}>
           <Calendar 
           className="calendar"
@@ -103,7 +103,6 @@ function App() {
             <button className="sunset"><Sunset /></button>
           </div>
         </form>
-        <Calendar />
       </div>
     </>
   );
