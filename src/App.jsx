@@ -14,6 +14,7 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [date, setDate] = useState(new Date())
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
@@ -33,6 +34,10 @@ function App() {
     }
   };
 
+  const handleDateChange = (newDate) => {
+    setDate(newDate)
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(places);
@@ -49,7 +54,9 @@ function App() {
       url: sunUrl,
       method: "GET",
       dataResponse: "json",
-      params: { lat, lng, formatted: 0 },
+      params: { lat, lng, formatted: 0,
+        date: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+      },
     });
     console.log(sunResponse);
 
@@ -61,9 +68,13 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div>
+      <div className="wrapper">
+        <Header />
         <form onSubmit={handleSubmit}>
+          <Calendar 
+          className="calendar"
+          onChange={handleDateChange} 
+          />
           <input
             type="text"
             value={input}
@@ -78,13 +89,20 @@ function App() {
                 </button>
               ))}
             </div>
-          ) : null}
+          ) : (
+            <div className="suggestionsHidden">
+                {places.map(({ display_name, place_id }) => (
+                  <button key={place_id} type="submit" value={place_id}>
+                    {display_name}
+                  </button>
+                ))}
+              </div> 
+          )}
           <div className='runTime'>
             <button className="sunrise"><Sunrise /></button>
             <button className="sunset"><Sunset /></button>
           </div>
         </form>
-        <Calendar />
       </div>
     </>
   );
