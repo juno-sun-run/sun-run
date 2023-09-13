@@ -89,7 +89,15 @@ function App() {
                 </button>
               ))}
             </div>
-          ) : null}
+          ) : (
+            <div className="suggestionsHidden">
+                {places.map(({ display_name, place_id }) => (
+                  <button key={place_id} type="submit" value={place_id}>
+                    {display_name}
+                  </button>
+                ))}
+              </div> 
+          )}
           <div className='runTime'>
             <button className="sunrise"><Sunrise /></button>
             <button className="sunset"><Sunset /></button>
