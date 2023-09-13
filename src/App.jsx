@@ -80,6 +80,7 @@ function App() {
             value={input}
             onChange={handleInputChange}
             placeholder="Enter your address"
+            required
           />
           {showSuggestions ? (
             <div className="suggestions">
