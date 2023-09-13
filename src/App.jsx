@@ -80,6 +80,7 @@ function App() {
             value={input}
             onChange={handleInputChange}
             placeholder="Enter your address"
+            required
           />
           {showSuggestions ? (
             <div className="suggestions">
@@ -102,6 +103,7 @@ function App() {
             <button className="sunrise"><Sunrise /></button>
             <button className="sunset"><Sunset /></button>
           </div>
+          <button className="submit">Let's go!</button>
         </form>
       </div>
     </>
