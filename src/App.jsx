@@ -15,13 +15,8 @@ function App() {
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(null);
-  const [timeResult, setTimeResult] = useState("");
-  const [isInputEmpty, setInputEmpty] = useState(true);
-
-  useEffect(() => {
-    setInputEmpty(input.trim() === "");
-  }, [input]);
+  const [selectedTime, setSelectedTime] = useState("Sunrise");
+  const [selectedLocation, setSelectedLocation] = useState(false);
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
@@ -36,8 +31,10 @@ function App() {
         params: { q: userAddress },
       });
       setPlaces(geoResponse.data);
+      setSelectedLocation(true);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setSelectedLocation(false);
     }
   };
 
@@ -45,14 +42,15 @@ function App() {
     setDate(newDate);
   };
 
-  const handleTimeSelection = (time) => {
-    setSelectedTime(time);
+  const handleTimeSelection = (event) => {
+    setSelectedTime(event.currentTarget.value);
   };
 
-  const handleLetsGoClick = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     console.log(places);
 
-    const place_id = parseInt(places[0]?.place_id);
+    const place_id = parseInt(event.nativeEvent.submitter.value);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
 
@@ -89,7 +87,11 @@ function App() {
     <>
       <div className="wrapper">
         <Header />
-        <form>
+        <form onSubmit={handleSubmit}>
+          <Calendar 
+          className="calendar"
+          onChange={handleDateChange} 
+          />
           <input
             type="text"
             value={input}
@@ -97,47 +99,26 @@ function App() {
             required
             placeholder="Enter your address"
           />
-          {showSuggestions && places.length > 0 ? (
-            <div className="suggestions">
-              {places.map(({ display_name, place_id }) => (
-                <button
-                  key={place_id}
-                  onClick={() => {
-                    setInput(display_name);
-                    setShowSuggestions(false);
-                  }}
-                >
-                  {display_name}
-                </button>
-              ))}
-            </div>
-          ) : null}
-          <Calendar className="calendar" onChange={handleDateChange} />
-          <div className="runTime">
-            <button
-              className="sunrise"
-              type="button"
-              onClick={() => handleTimeSelection("Sunrise")}
-            >
+          {/* this does cool thing!!! different class names with ternary statement*/}
+          <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
+            {places.map(({ display_name, place_id }) => (
+              <button key={place_id} type="submit" value={place_id}>
+                {display_name}
+              </button>
+            ))}
+          </div>
+          <div className='runTime'>
+            <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
               <Sunrise />
             </button>
-            <button
-              className="sunset"
-              type="button"
-              onClick={() => handleTimeSelection("Sunset")}
-            >
+            <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
               <Sunset />
             </button>
           </div>
-          <button
-            className="submit"
-            type="button"
-            onClick={handleLetsGoClick}
-            disabled={isInputEmpty}
-          >
+          <button className="submit" disabled={!selectedLocation}>
             Let's go!
           </button>
-          {timeResult && <p>{timeResult}</p>}
+          <p>{selectedTime}</p>
         </form>
       </div>
     </>
