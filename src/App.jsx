@@ -55,9 +55,9 @@ function App() {
     const place_id = parseInt(places[0]?.place_id);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
-
-    setInput(selected.display_name);
+    setInput(input);
     setShowSuggestions(false);
+
     console.log(selected);
 
     const sunResponse = await axios({
