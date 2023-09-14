@@ -4,8 +4,8 @@ import axios from "axios";
 import Calendar from "react-widgets/Calendar";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
-import Sunrise from './assets/Sunrise'
-import Sunset from './assets/Sunset'
+import Sunrise from "./assets/Sunrise";
+import Sunset from "./assets/Sunset";
 
 const geoUrl = " https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
@@ -14,7 +14,14 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [timeResult, setTimeResult] = useState("");
+  const [isInputEmpty, setInputEmpty] = useState(true);
+
+  useEffect(() => {
+    setInputEmpty(input.trim() === "");
+  }, [input]);
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
@@ -35,14 +42,17 @@ function App() {
   };
 
   const handleDateChange = (newDate) => {
-    setDate(newDate)
-  }
+    setDate(newDate);
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleTimeSelection = (time) => {
+    setSelectedTime(time);
+  };
+
+  const handleLetsGoClick = async () => {
     console.log(places);
 
-    const place_id = parseInt(event.nativeEvent.submitter.value);
+    const place_id = parseInt(places[0]?.place_id);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
 
@@ -54,8 +64,11 @@ function App() {
       url: sunUrl,
       method: "GET",
       dataResponse: "json",
-      params: { lat, lng, formatted: 0,
-        date: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+      params: {
+        lat,
+        lng,
+        formatted: 0,
+        date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
       },
     });
     console.log(sunResponse);
@@ -64,46 +77,68 @@ function App() {
     const sunset = sunResponse.data.results.sunset;
     console.log(sunrise);
     console.log(sunset);
+
+    if (selectedTime === "Sunrise") {
+      setTimeResult(`Sunrise time: ${sunrise}`);
+    } else if (selectedTime === "Sunset") {
+      setTimeResult(`Sunset time: ${sunset}`);
+    }
   };
 
   return (
     <>
       <div className="wrapper">
         <Header />
-        <form onSubmit={handleSubmit}>
-          <Calendar 
-          className="calendar"
-          onChange={handleDateChange} 
-          />
+        <form>
           <input
             type="text"
             value={input}
             onChange={handleInputChange}
+            required
             placeholder="Enter your address"
             required
           />
-          {showSuggestions ? (
+          {showSuggestions && places.length > 0 ? (
             <div className="suggestions">
               {places.map(({ display_name, place_id }) => (
-                <button key={place_id} type="submit" value={place_id}>
+                <button
+                  key={place_id}
+                  onClick={() => {
+                    setInput(display_name);
+                    setShowSuggestions(false);
+                  }}
+                >
                   {display_name}
                 </button>
               ))}
             </div>
-          ) : (
-            <div className="suggestionsHidden">
-                {places.map(({ display_name, place_id }) => (
-                  <button key={place_id} type="submit" value={place_id}>
-                    {display_name}
-                  </button>
-                ))}
-              </div> 
-          )}
-          <div className='runTime'>
-            <button className="sunrise"><Sunrise /></button>
-            <button className="sunset"><Sunset /></button>
+          ) : null}
+          <Calendar className="calendar" onChange={handleDateChange} />
+          <div className="runTime">
+            <button
+              className="sunrise"
+              type="button"
+              onClick={() => handleTimeSelection("Sunrise")}
+            >
+              <Sunrise />
+            </button>
+            <button
+              className="sunset"
+              type="button"
+              onClick={() => handleTimeSelection("Sunset")}
+            >
+              <Sunset />
+            </button>
           </div>
-          <button className="submit">Let's go!</button>
+          <button
+            className="submit"
+            type="button"
+            onClick={handleLetsGoClick}
+            disabled={isInputEmpty}
+          >
+            Let's go!
+          </button>
+          {timeResult && <p>{timeResult}</p>}
         </form>
       </div>
     </>
