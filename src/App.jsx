@@ -53,7 +53,7 @@ function App() {
     const place_id = parseInt(event.nativeEvent.submitter.value);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
-    setInput(input);
+    setInput(selected.display_name);
     setShowSuggestions(false);
 
     console.log(selected);
