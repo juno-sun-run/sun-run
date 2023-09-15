@@ -92,7 +92,6 @@ function App() {
             onChange={handleInputChange}
             required
             placeholder="Enter your address"
-            required
           />
           {/* this does cool thing!!! different class names with ternary statement*/}
           <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
