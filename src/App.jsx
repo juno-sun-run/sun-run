@@ -75,12 +75,6 @@ function App() {
     const sunset = sunResponse.data.results.sunset;
     console.log(sunrise);
     console.log(sunset);
-
-    if (selectedTime === "Sunrise") {
-      setTimeResult(`Sunrise time: ${sunrise}`);
-    } else if (selectedTime === "Sunset") {
-      setTimeResult(`Sunset time: ${sunset}`);
-    }
   };
 
   return (
