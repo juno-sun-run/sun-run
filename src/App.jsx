@@ -17,6 +17,7 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("Sunrise");
   const [selectedLocation, setSelectedLocation] = useState(false);
+  const [duration, setDuration] = useState("0")
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
@@ -45,6 +46,11 @@ function App() {
   const handleTimeSelection = (event) => {
     setSelectedTime(event.currentTarget.value);
   };
+
+  const handleDuration = (event) => {
+    setDuration(event.target.value)
+    console.log(event.target.value)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -109,6 +115,21 @@ function App() {
               <Sunset />
             </button>
           </div>
+          {selectedTime === "Sunset" && 
+            <>
+              <label>How long would you like to run for?
+                <select value={duration} onChange={handleDuration} required>
+                  <option value="0" disabled={true}>Select a time</option>
+                  <option value="10">10 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="30">30 minutes</option>
+                  <option value="40">40 minutes</option>
+                  <option value="50">50 minutes</option>
+                  <option value="60">1 hour</option>
+                </select>
+              </label>
+            </>
+          }
           <button className="submit" disabled={!selectedLocation}>
             Let's go!
           </button>
