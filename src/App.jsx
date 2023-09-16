@@ -43,7 +43,7 @@ function App() {
     setDate(newDate);
   };
 
-  const handleTimeSelection = (event) => {
+  const handleSunSelection = (event) => {
     setSelectedTime(event.currentTarget.value);
   };
 
@@ -108,10 +108,10 @@ function App() {
             ))}
           </div>
           <div className='runTime'>
-            <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
+            <button className="sunrise" type="button" value="Sunrise" onClick={handleSunSelection}>
               <Sunrise />
             </button>
-            <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
+            <button className="sunset" type="button" value="Sunset" onClick={handleSunSelection}>
               <Sunset />
             </button>
           </div>
