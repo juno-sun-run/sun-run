@@ -76,10 +76,35 @@ function App() {
     });
     console.log(sunResponse);
 
-    const sunrise = sunResponse.data.results.sunrise;
-    const sunset = sunResponse.data.results.sunset;
+    const sunrise = new Date (sunResponse.data.results.sunrise);
+    const sunset = new Date(sunResponse.data.results.sunset);
     console.log(sunrise);
     console.log(sunset);
+
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const sunsetUserTimezone = new Date(sunset.toLocaleString("en-US", { timeZone: userTimeZone })
+    );
+    const sunriseUserTimezone = new Date(sunrise.toLocaleString("en-US", { timeZone: userTimeZone })
+    );
+
+    const sunsetRunStartTime = new Date(sunsetUserTimezone.getTime() - duration * 60 * 1000
+    );
+
+    const sunriseTimeFormatted = sunriseUserTimezone.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const sunsetTimeFormatted = sunsetRunStartTime.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    console.log(`Leave at ${sunsetTimeFormatted} to run for ${duration} minutes before Sunset`);
+    console.log(`Leave at ${sunriseTimeFormatted} to run at Sunrise` );
   };
 
   return (
