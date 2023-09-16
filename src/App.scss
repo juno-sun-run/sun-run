@@ -28,6 +28,10 @@
   align-items: flex-start;
 }
 
+.calendar .rw-calendar-grid {
+  background: linear-gradient(#a24381, #d66292, #f87d82, #e7745a);
+}
+
 .suggestions {
   display: flex;
   flex-flow: column;
