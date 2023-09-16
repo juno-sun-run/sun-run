@@ -17,7 +17,7 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("Sunrise");
   const [selectedLocation, setSelectedLocation] = useState(false);
-  const [duration, setDuration] = useState("0")
+  const [duration, setDuration] = useState(0)
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
