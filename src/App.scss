@@ -5,10 +5,27 @@
   margin: 0 auto;
 }
 
-form {
+.columnsContainer {
   display: flex;
-  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.leftColumn {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   max-width: 50%;
+}
+
+.rightColumn {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .suggestions {

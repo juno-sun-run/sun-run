@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Sunrise from "./assets/Sunrise";
 import Sunset from "./assets/Sunset";
 
-const geoUrl = " https://geocode.maps.co/search";
+const geoUrl = "https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
 
 function App() {
@@ -80,40 +80,48 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Header />
-        <form onSubmit={handleSubmit}>
-          <Calendar 
-          className="calendar"
-          onChange={handleDateChange} 
-          />
-          <input
-            type="text"
-            value={input}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your address"
-          />
-          {/* this does cool thing!!! different class names with ternary statement*/}
-          <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
-            {places.map(({ display_name, place_id }) => (
-              <button key={place_id} type="submit" value={place_id}>
-                {display_name}
-              </button>
-            ))}
+        <div className="columnsContainer">
+          <div className="leftColumn">
+            <Header />
+            <Calendar 
+                className="calendar"
+                onChange={handleDateChange} 
+                />
+            <form onSubmit={handleSubmit} className="formContainer">
+              <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                required
+                placeholder="Enter your address"
+              />
+            </form>
+            
+              
+                {/* this does cool thing!!! different class names with ternary statement*/}
+                <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
+                  {places.map(({ display_name, place_id }) => (
+                    <button key={place_id} type="submit" value={place_id}>
+                      {display_name}
+                    </button>
+                  ))}
+                </div>
+                </div>
+                <div className="rightColumn">
+                <div className='runTime'>
+                  <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
+                    <Sunrise />
+                  </button>
+                  <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
+                    <Sunset />
+                  </button>
+                </div>
+                <button className="submit" disabled={!selectedLocation}>
+                  Let's go!
+                </button>
+                <p>{selectedTime}</p>
+              </div>
           </div>
-          <div className='runTime'>
-            <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
-              <Sunrise />
-            </button>
-            <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
-              <Sunset />
-            </button>
-          </div>
-          <button className="submit" disabled={!selectedLocation}>
-            Let's go!
-          </button>
-          <p>{selectedTime}</p>
-        </form>
       </div>
     </>
   );
