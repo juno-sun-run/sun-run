@@ -48,8 +48,7 @@ function App() {
   };
 
   const handleDuration = (event) => {
-    setDuration(event.target.value)
-    console.log(event.target.value)
+    setDuration(parseInt(event.target.value))
   }
 
   const handleSubmit = async (event) => {
