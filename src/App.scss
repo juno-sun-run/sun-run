@@ -11,6 +11,15 @@ form {
   max-width: 50%;
 }
 
+.location {
+  display: flex;
+  flex-flow: column;
+
+  input {
+    flex-grow: 1;
+  }
+}
+
 .suggestions {
   display: flex;
   flex-flow: column;

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/App.css";
 import axios from "axios";
 import Calendar from "react-widgets/Calendar";
+import Location from "./components/Location";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
 import Sunrise from "./assets/Sunrise";
@@ -77,7 +78,7 @@ function App() {
     console.log(sunResponse);
 
     const sunrise = new Date (sunResponse.data.results.sunrise);
-    const sunset = new Date(sunResponse.data.results.sunset);
+    const sunset = new Date (sunResponse.data.results.sunset);
     console.log(sunrise);
     console.log(sunset);
 
@@ -112,25 +113,13 @@ function App() {
       <div className="wrapper">
         <Header />
         <form onSubmit={handleSubmit}>
-          <Calendar 
-          className="calendar"
-          onChange={handleDateChange} 
-          />
-          <input
-            type="text"
+          <Calendar className="calendar" onChange={handleDateChange} />
+          <Location 
             value={input}
             onChange={handleInputChange}
-            required
-            placeholder="Enter your address"
+            places={places}
+            showSuggestions={showSuggestions}
           />
-          {/* this does cool thing!!! different class names with ternary statement*/}
-          <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
-            {places.map(({ display_name, place_id }) => (
-              <button key={place_id} type="submit" value={place_id}>
-                {display_name}
-              </button>
-            ))}
-          </div>
           <div className='runTime'>
             <button className="sunrise" type="button" value="Sunrise" onClick={handleSunSelection}>
               <Sunrise />
