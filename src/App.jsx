@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Sunrise from "./assets/Sunrise";
 import Sunset from "./assets/Sunset";
 
-const geoUrl = " https://geocode.maps.co/search";
+const geoUrl = "https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
 
 function App() {
