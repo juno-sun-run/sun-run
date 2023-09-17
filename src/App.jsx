@@ -122,7 +122,7 @@ function App() {
                 <p>{selectedTime}</p>
               </div>
           </div>
-      </div>
+        </div>
     </>
   );
 }
