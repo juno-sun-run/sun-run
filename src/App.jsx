@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
 import axios from "axios";
-import Calendar from "react-widgets/Calendar";
-import Location from "./components/Location";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
+import Location from "./components/Location";
+import Calendar from "react-widgets/Calendar";
+import Footer from "./components/Footer";
 import Sunrise from "./assets/Sunrise";
 import Sunset from "./assets/Sunset";
 
@@ -149,6 +150,7 @@ function App() {
           <p>{selectedTime}</p>
         </form>
       </div>
+      <Footer />
     </>
   );
 }
