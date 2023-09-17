@@ -5,9 +5,19 @@
   margin: 0 auto;
 }
 
+.location {
+  display: flex;
+  flex-flow: row;
+
+  input {
+    flex-grow: 1;
+  }
+}
+
 .columnsContainer {
   display: flex;
   justify-content: space-between;
+  flex-flow: row;
   align-items: flex-start;
 }
 
@@ -28,8 +38,11 @@
   align-items: flex-start;
 }
 
-.calendar .rw-calendar-grid {
-  background: linear-gradient(#a24381, #d66292, #f87d82, #e7745a);
+div {
+  .calendar
+  .rw-calendar-grid {
+    background: linear-gradient(#a24381, #d66292, #f87d82, #e7745a);
+  }
 }
 
 .suggestions {
