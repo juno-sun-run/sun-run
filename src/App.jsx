@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
 import axios from "axios";
-import Calendar from "react-widgets/Calendar";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
+import Location from "./components/Location";
+import Calendar from "react-widgets/Calendar";
+import Footer from "./components/Footer";
 import Sunrise from "./assets/Sunrise";
 import Sunset from "./assets/Sunset";
 
@@ -17,6 +19,7 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("Sunrise");
   const [selectedLocation, setSelectedLocation] = useState(false);
+  const [duration, setDuration] = useState(0)
 
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
@@ -42,9 +45,13 @@ function App() {
     setDate(newDate);
   };
 
-  const handleTimeSelection = (event) => {
+  const handleSunSelection = (event) => {
     setSelectedTime(event.currentTarget.value);
   };
+
+  const handleDuration = (event) => {
+    setDuration(parseInt(event.target.value))
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +60,7 @@ function App() {
     const place_id = parseInt(event.nativeEvent.submitter.value);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
-    setInput(input);
+    setInput(selected.display_name);
     setShowSuggestions(false);
 
     console.log(selected);
@@ -71,58 +78,85 @@ function App() {
     });
     console.log(sunResponse);
 
-    const sunrise = sunResponse.data.results.sunrise;
-    const sunset = sunResponse.data.results.sunset;
+    const sunrise = new Date (sunResponse.data.results.sunrise);
+    const sunset = new Date (sunResponse.data.results.sunset);
     console.log(sunrise);
     console.log(sunset);
+
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const sunsetUserTimezone = new Date(sunset.toLocaleString("en-US", { timeZone: userTimeZone })
+    );
+    const sunriseUserTimezone = new Date(sunrise.toLocaleString("en-US", { timeZone: userTimeZone })
+    );
+
+    const sunsetRunStartTime = new Date(sunsetUserTimezone.getTime() - duration * 60 * 1000
+    );
+
+    const sunriseTimeFormatted = sunriseUserTimezone.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const sunsetTimeFormatted = sunsetRunStartTime.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    console.log(`Leave at ${sunsetTimeFormatted} to run for ${duration} minutes before Sunset`);
+    console.log(`Leave at ${sunriseTimeFormatted} to run at Sunrise` );
   };
 
   return (
     <>
       <div className="wrapper">
-        <div className="columnsContainer">
-          <div className="leftColumn">
-            <Header />
-            <Calendar 
-                className="calendar"
-                onChange={handleDateChange} 
-                />
-            <form onSubmit={handleSubmit} className="formContainer">
-              <input
-                type="text"
+          <Header />
+          <div className="columnsContainer">
+            <form onSubmit={handleSubmit}>
+            <div className="leftColumn">
+              <Calendar className="calendar" onChange={handleDateChange} />
+              <Location 
                 value={input}
                 onChange={handleInputChange}
-                required
-                placeholder="Enter your address"
+                places={places}
+                showSuggestions={showSuggestions}
               />
-            </form>
-            
-              
-                {/* this does cool thing!!! different class names with ternary statement*/}
-                <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
-                  {places.map(({ display_name, place_id }) => (
-                    <button key={place_id} type="submit" value={place_id}>
-                      {display_name}
-                    </button>
-                  ))}
-                </div>
-                </div>
-                <div className="rightColumn">
+              </div>
+              <div classname="rightColumn">
                 <div className='runTime'>
-                  <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
+                  <button className="sunrise" type="button" value="Sunrise" onClick={handleSunSelection}>
                     <Sunrise />
                   </button>
-                  <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
+                  <button className="sunset" type="button" value="Sunset" onClick={handleSunSelection}>
                     <Sunset />
                   </button>
+                {selectedTime === "Sunset" && 
+                  <>
+                    <label>How long would you like to run for?
+                      <select value={duration} onChange={handleDuration} required>
+                        <option value="0" disabled={true}>Select a time</option>
+                        <option value="10">10 minutes</option>
+                        <option value="20">20 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="40">40 minutes</option>
+                        <option value="50">50 minutes</option>
+                        <option value="60">1 hour</option>
+                      </select>
+                    </label>
+                  </>
+                }
                 </div>
                 <button className="submit" disabled={!selectedLocation}>
                   Let's go!
                 </button>
                 <p>{selectedTime}</p>
               </div>
+            </form>
           </div>
         </div>
+      <Footer />
     </>
   );
 }
