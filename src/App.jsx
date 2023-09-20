@@ -150,7 +150,7 @@ function App() {
                           showSuggestions={showSuggestions}
                         />
                       </div>
-                      <div classname="rightColumn">
+                      <div className="rightColumn">
                         <div className="runTime">
                           <button
                             className="sunrise"
