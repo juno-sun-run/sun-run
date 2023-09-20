@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import "../styles/App.css";
 import axios from "axios";
 import Calendar from "react-widgets/Calendar";
@@ -9,6 +10,17 @@ import Sunset from "./assets/Sunset";
 
 const geoUrl = " https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
+
+function AppRouter() {
+  const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <App />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+}
 
 function App() {
   const [places, setPlaces] = useState([]);
@@ -78,44 +90,79 @@ function App() {
   };
 
   return (
-    <>
-      <div className="wrapper">
-        <Header />
-        <form onSubmit={handleSubmit}>
-          <Calendar 
-          className="calendar"
-          onChange={handleDateChange} 
+    <Router>
+      <>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="wrapper">
+                  <Header />
+                  <form onSubmit={handleSubmit}>
+                    <Calendar
+                      className="calendar"
+                      onChange={handleDateChange}
+                    />
+                    <input
+                      type="text"
+                      value={input}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Enter your address"
+                    />
+                    {/* this does cool thing!!! different class names with ternary statement*/}
+                    <div
+                      className={`suggestions ${
+                        showSuggestions ? "" : "hidden"
+                      }`}
+                    >
+                      {places.map(({ display_name, place_id }) => (
+                        <button key={place_id} type="submit" value={place_id}>
+                          {display_name}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="runTime">
+                      <button
+                        className="sunrise"
+                        type="button"
+                        value="Sunrise"
+                        onClick={handleTimeSelection}
+                      >
+                        <Sunrise />
+                      </button>
+                      <button
+                        className="sunset"
+                        type="button"
+                        value="Sunset"
+                        onClick={handleTimeSelection}
+                      >
+                        <Sunset />
+                      </button>
+                    </div>
+                    <Link to="/results">
+                      <button className="submit" disabled={!selectedLocation}>
+                        Let's go!
+                      </button>
+                    </Link>
+                    <p>{selectedTime}</p>
+                  </form>
+                </div>
+              </>
+            }
           />
-          <input
-            type="text"
-            value={input}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your address"
+          <Route
+            path="/results"
+            element={
+              <>
+                <h1>Test</h1>
+              </>
+            }
           />
-          {/* this does cool thing!!! different class names with ternary statement*/}
-          <div className={`suggestions ${showSuggestions ? "" : "hidden"}`}>
-            {places.map(({ display_name, place_id }) => (
-              <button key={place_id} type="submit" value={place_id}>
-                {display_name}
-              </button>
-            ))}
-          </div>
-          <div className='runTime'>
-            <button className="sunrise" type="button" value="Sunrise" onClick={handleTimeSelection}>
-              <Sunrise />
-            </button>
-            <button className="sunset" type="button" value="Sunset" onClick={handleTimeSelection}>
-              <Sunset />
-            </button>
-          </div>
-          <button className="submit" disabled={!selectedLocation}>
-            Let's go!
-          </button>
-          <p>{selectedTime}</p>
-        </form>
-      </div>
-    </>
+        </Routes>
+      </>
+    </Router>
   );
 }
 

@@ -1,4 +1,4 @@
-@use '../styles/partials/_setup.scss';
+@use "../styles/partials/_setup.scss";
 
 .wrapper {
   max-width: 1024px;
@@ -14,7 +14,7 @@ form {
 .suggestions {
   display: flex;
   flex-flow: column;
-} 
+}
 
 .hidden {
   display: none;
@@ -24,7 +24,8 @@ form {
   display: flex;
   flex-flow: row;
 
-  .sunrise, .sunset {
+  .sunrise,
+  .sunset {
     font-size: 11rem;
     font-weight: 600;
     color: orange;
