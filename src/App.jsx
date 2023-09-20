@@ -191,11 +191,14 @@ function App() {
                             </>
                           )}
                         </div>
-
-                        <button className="submit" disabled={!selectedLocation}>
-                          Let's go!
-                        </button>
-
+                        <Link to="/results">
+                          <button
+                            className="submit"
+                            disabled={!selectedLocation}
+                          >
+                            Let's go!
+                          </button>
+                        </Link>
                         <p>{selectedTime}</p>
                       </div>
                     </form>
