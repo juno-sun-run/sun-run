@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import "../styles/App.css";
 import axios from "axios";
 import "react-widgets/styles.css";
@@ -11,6 +12,17 @@ import Sunset from "./assets/Sunset";
 
 const geoUrl = "https://geocode.maps.co/search";
 const sunUrl = "https://api.sunrise-sunset.org/json";
+
+function AppRouter() {
+  const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <App />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+}
 
 function App() {
   const [places, setPlaces] = useState([]);
@@ -115,71 +127,95 @@ function App() {
   };
 
   return (
-    <>
-      <div className="wrapper">
-        <Header />
-        <div className="columnsContainer">
-          <form onSubmit={handleSubmit}>
-            <div className="leftColumn">
-              <Calendar className="calendar" onChange={handleDateChange} />
-              <Location
-                value={input}
-                onChange={handleInputChange}
-                places={places}
-                showSuggestions={showSuggestions}
-              />
-            </div>
-            <div classname="rightColumn">
-              <div className="runTime">
-                <button
-                  className="sunrise"
-                  type="button"
-                  value="Sunrise"
-                  onClick={handleSunSelection}
-                >
-                  <Sunrise />
-                </button>
-                <button
-                  className="sunset"
-                  type="button"
-                  value="Sunset"
-                  onClick={handleSunSelection}
-                >
-                  <Sunset />
-                </button>
-                {selectedTime === "Sunset" && (
-                  <>
-                    <label>
-                      How long would you like to run for?
-                      <select
-                        value={duration}
-                        onChange={handleDuration}
-                        required
-                      >
-                        <option value="0" disabled={true}>
-                          Select a time
-                        </option>
-                        <option value="10">10 minutes</option>
-                        <option value="20">20 minutes</option>
-                        <option value="30">30 minutes</option>
-                        <option value="40">40 minutes</option>
-                        <option value="50">50 minutes</option>
-                        <option value="60">1 hour</option>
-                      </select>
-                    </label>
-                  </>
-                )}
-              </div>
-              <button className="submit" disabled={!selectedLocation}>
-                Let's go!
-              </button>
-              <p>{selectedTime}</p>
-            </div>
-          </form>
-        </div>
-      </div>
-      <Footer />
-    </>
+    <Router>
+      <>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="wrapper">
+                  <Header />
+                  <div className="columnsContainer">
+                    <form onSubmit={handleSubmit}>
+                      <div className="leftColumn">
+                        <Calendar
+                          className="calendar"
+                          onChange={handleDateChange}
+                        />
+                        <Location
+                          value={input}
+                          onChange={handleInputChange}
+                          places={places}
+                          showSuggestions={showSuggestions}
+                        />
+                      </div>
+                      <div classname="rightColumn">
+                        <div className="runTime">
+                          <button
+                            className="sunrise"
+                            type="button"
+                            value="Sunrise"
+                            onClick={handleSunSelection}
+                          >
+                            <Sunrise />
+                          </button>
+                          <button
+                            className="sunset"
+                            type="button"
+                            value="Sunset"
+                            onClick={handleSunSelection}
+                          >
+                            <Sunset />
+                          </button>
+                          {selectedTime === "Sunset" && (
+                            <>
+                              <label>
+                                How long would you like to run for?
+                                <select
+                                  value={duration}
+                                  onChange={handleDuration}
+                                  required
+                                >
+                                  <option value="0" disabled={true}>
+                                    Select a time
+                                  </option>
+                                  <option value="10">10 minutes</option>
+                                  <option value="20">20 minutes</option>
+                                  <option value="30">30 minutes</option>
+                                  <option value="40">40 minutes</option>
+                                  <option value="50">50 minutes</option>
+                                  <option value="60">1 hour</option>
+                                </select>
+                              </label>
+                            </>
+                          )}
+                        </div>
+
+                        <button className="submit" disabled={!selectedLocation}>
+                          Let's go!
+                        </button>
+
+                        <p>{selectedTime}</p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/results"
+            element={
+              <>
+                <h1>test</h1>
+              </>
+            }
+          />
+        </Routes>
+      </>
+    </Router>
   );
 }
 
