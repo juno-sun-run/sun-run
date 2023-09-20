@@ -1,4 +1,4 @@
-@use '../styles/partials/_setup.scss';
+@use "../styles/partials/_setup.scss";
 
 .wrapper {
   max-width: 1024px;
@@ -61,7 +61,7 @@ body {
 .suggestions {
   display: flex;
   flex-flow: column;
-} 
+}
 
 .hidden {
   display: none;
@@ -71,7 +71,8 @@ body {
   display: flex;
   flex-flow: row;
 
-  .sunrise, .sunset {
+  .sunrise,
+  .sunset {
     font-size: 11rem;
     font-weight: 600;
     color: #ffcd47;
@@ -93,7 +94,7 @@ body {
   border-radius: 25px;
   cursor: pointer;
   position: relative;
-  background-color: rgba(0, 0, 0, 0,);
+  background-color: rgba(0, 0, 0, 0);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -113,12 +114,8 @@ body {
     transition: 0.2s;
   }
 
-
   &:hover:after {
-    top:0px;
+    top: 0px;
     left: 0px;
   }
 }
-
-
-
