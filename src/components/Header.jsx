@@ -1,10 +1,10 @@
 const Header = () => {
 
-    return (
+  return (
 
-        <h1>Sun Run ☀️</h1>
+    <h1>Sun Run ☀️</h1>
 
-    );
+  );
 
 }
 
