@@ -6,7 +6,16 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
+}
+
+.mainBackground {
   background: linear-gradient(#a28ef0, #da83d8, #fd7fa4, #ff8e74, #ff9b58);
+}
+
+body.resultsBackground {
+  background-color: red;
 }
 
 .location {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createBrowserRouter, RouterProvider, Routes, Route, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Routes, Route, Link, useLocation } from "react-router-dom";
 import "../styles/App.css";
 import axios from "axios";
 import "react-widgets/styles.css";
@@ -33,6 +33,9 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState(false);
   const [duration, setDuration] = useState(0);
 
+  const location = useLocation();
+  const isRouterPage = location.pathname === "/results";
+  
   const handleInputChange = async (event) => {
     const userAddress = event.target.value;
     setInput(userAddress);
@@ -129,8 +132,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={
+        <div className={`mainBackground`}>
           <>
-            <div className="wrapper">
+            <div className={`wrapper ${isRouterPage ? "resultsBackground" : "mainBackground"}`}>
               <Header />
               <div className="columnsContainer">
                 <form onSubmit={handleSubmit}>
@@ -202,6 +206,7 @@ function App() {
             </div>
             <Footer />
           </>
+          </div>
         }
       />
       <Route path="/results" element={
