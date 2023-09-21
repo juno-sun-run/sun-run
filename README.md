@@ -1,5 +1,5 @@
 # Sun Run
-by Emma Clarke, Kristopher McGonegal, Samantha St-Germain and Chris Vaz
+by Emma Clarke, Samantha St-Germain and Chris Vaz
 
 ## Purpose 
 Our group will create an app that will let the user plan their run based on the available sunlight.
