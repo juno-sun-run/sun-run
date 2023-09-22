@@ -24,6 +24,9 @@ function AppRouter() {
 function App() {
   const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({})
 
+  const location = useLocation();
+  const isResultsPage = location.pathname === "/results";
+
   const handleShit = (times) => {
     // handleShit gets an object containing any combination of sunrise / sunset / duration
     // The new state is made from the old state plus whatever is in `times`
@@ -31,8 +34,10 @@ function App() {
   };
 
   return (
+    <div className={`${isResultsPage ? "resultsBackground" : "mainBackground"}`}>
     <div className="wrapper">
       <Header />
+      
       <Routes>
         <Route path="/" element={
           <Form {...{ handleShit }} />
@@ -42,6 +47,7 @@ function App() {
         } />
       </Routes>
       <Footer />
+    </div>
     </div>
   );
 }

@@ -10,11 +10,17 @@ body {
   padding: 0;
 }
 
-.mainBackground {
-  background: linear-gradient(#a28ef0, #da83d8, #fd7fa4, #ff8e74, #ff9b58);
+h1 {
+  margin: 0;
 }
 
-body.resultsBackground {
+.mainBackground {
+  background: linear-gradient(#a28ef0, #da83d8, #fd7fa4, #ff8e74, #ff9b58);
+  height: 100vh;
+  width: 100vw;
+}
+
+.resultsBackground {
   background-color: red;
 }
 
@@ -28,18 +34,25 @@ body.resultsBackground {
 }
 
 .columnsContainer {
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row;
-  align-items: flex-start;
+  // display: flex;
+  // justify-content: space-between;
+  // flex-flow: row;
+  // align-items: center;
+  // max-width: 1024px;
+  // margin: 0 auto;
+  // text-align: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .leftColumn {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  // flex: 1;
+  // padding: 20px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
   max-width: 50%;
 }
 
