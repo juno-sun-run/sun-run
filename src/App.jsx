@@ -22,12 +22,12 @@ function AppRouter() {
 }
 
 function App() {
-  const [{ sunrise, sunset, duration }, setTimes] = useState({})
+  const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({})
 
   const handleShit = (times) => {
     // handleShit gets an object containing any combination of sunrise / sunset / duration
     // The new state is made from the old state plus whatever is in `times`
-    setTimes({ sunrise, sunset, duration, ...times })
+    setTimes({ sunrise, sunset, duration, selectedTime, ...times })
   };
 
   return (
@@ -38,7 +38,7 @@ function App() {
           <Form {...{ handleShit }} />
         } />
         <Route path="/results" element={
-          <Results {...{ sunrise, sunset, duration }} />
+          <Results {...{ sunrise, sunset, duration, selectedTime }} />
         } />
       </Routes>
       <Footer />

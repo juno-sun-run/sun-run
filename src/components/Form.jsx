@@ -44,8 +44,9 @@ const Form = ({ handleShit }) => {
     setDate(newDate);
   };
 
-  const handleSunSelection = (event) => {
-    setSelectedTime(event.currentTarget.value);
+  const handleSunSelection = ({ currentTarget: { value: selectedTime }}) => {
+    setSelectedTime(selectedTime);
+    handleShit({ selectedTime });
   };
 
   const handleDuration = ({ target: { value: duration }}) => {
@@ -82,7 +83,7 @@ const Form = ({ handleShit }) => {
     const sunset = getUserTimezoneDate(new Date(sunResponse.data.results.sunset));
     console.log(sunrise);
     console.log(sunset);
-    handleShit({ sunrise, sunset });
+    handleShit({ sunrise, sunset, selectedTime });
   };
 
   return (

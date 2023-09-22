@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import formatTime from "../helpers/formatTime";
 
 
-const Results = ({ sunset, sunrise, duration }) => {
+const Results = ({ sunset, sunrise, duration, selectedTime }) => {
   if (!sunrise || !sunset) return null;
 
   const sunsetRunStartTime = new Date(sunset.getTime() - duration * 60 * 1000);
@@ -17,8 +17,12 @@ const Results = ({ sunset, sunrise, duration }) => {
   console.log(`Leave at ${sunriseTimeFormatted} to run at Sunrise`);
   return (
     <>
-      <p>{sunriseTimeFormatted}</p>
-      <p>{sunsetTimeFormatted}</p>
+    {selectedTime === "Sunset" ? (
+      <p>Start your run at {sunsetTimeFormatted}!</p>
+    ) : (
+      <p>Start your run at {sunriseTimeFormatted}!</p>
+    )}
+      <p>{selectedTime}</p>
       <Link to="/">GO BAAACK</Link>
     </>
   );
