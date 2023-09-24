@@ -45,7 +45,7 @@ function App() {
   const location = useLocation();
   const isResultsPage = location.pathname === "/results";
 
-  const handleShit = (times) => {
+  const handleStuff = (times) => {
     // handleShit gets an object containing any combination of sunrise / sunset / duration
     // The new state is made from the old state plus whatever is in `times`
     setTimes({ sunrise, sunset, duration, selectedTime, ...times })
@@ -58,7 +58,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={
-            <Form {...{ handleShit }} />
+            <Form {...{ handleStuff }} />
           } />
           <Route path="/results" element={
             <Results {...{ sunrise, sunset, duration, selectedTime }} />
