@@ -9,18 +9,24 @@ import Footer from "./components/Footer";
 import formatTime from "./helpers/formatTime";
 import getUserTimezoneDate from "./helpers/getUserTimezoneDate";
 import { useAccessors } from "react-widgets/cjs/Accessors";
-import { initializeApp } from "firebase/app";
+import firebase from "./components/Firebase.jsx";
+import { getDatabase, ref, child, onValue, set, push } from 'firebase/database';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD_tBx3qX1mmQzbKhq0dZondFz4HTMjQK0",
-  authDomain: "sun-run-feb5f.firebaseapp.com",
-  projectId: "sun-run-feb5f",
-  storageBucket: "sun-run-feb5f.appspot.com",
-  messagingSenderId: "383995255223",
-  appId: "1:383995255223:web:7879e1bbb6889e9f7ff032"
-};
+// global variables
+const database = getDatabase(firebase);
+const dbRef = ref(database);
+const allUserRunsRef = ref(database, `/userRuns`);
 
-const app = initializeApp(firebaseConfig);
+// guid = globally unique identifier
+// let guid = localStorage.getItem('guid')
+// let userRunsRef
+
+// if (guid) {
+//   userRunsRef = child(allUserRunsRef, guid)
+// } else {
+//   userRunsRef = push(allUserRunsRef)
+//   localStorage.setItem('guid', userRunsRef.key)
+// }
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -34,7 +40,7 @@ function AppRouter() {
 }
 
 function App() {
-  const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({})
+  const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({});
 
   const location = useLocation();
   const isResultsPage = location.pathname === "/results";
@@ -47,19 +53,19 @@ function App() {
 
   return (
     <div className={`${isResultsPage ? "resultsBackground" : "mainBackground"}`}>
-    <div className="wrapper">
-      <Header />
-      
-      <Routes>
-        <Route path="/" element={
-          <Form {...{ handleShit }} />
-        } />
-        <Route path="/results" element={
-          <Results {...{ sunrise, sunset, duration, selectedTime }} />
-        } />
-      </Routes>
-      <Footer />
-    </div>
+      <div className="wrapper">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={
+            <Form {...{ handleShit }} />
+          } />
+          <Route path="/results" element={
+            <Results {...{ sunrise, sunset, duration, selectedTime }} />
+          } />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }
