@@ -11,6 +11,7 @@ import getUserTimezoneDate from "./helpers/getUserTimezoneDate";
 import { useAccessors } from "react-widgets/cjs/Accessors";
 import firebase from "./components/Firebase.jsx";
 import { getDatabase, ref, child, onValue, set, push } from 'firebase/database';
+import Popup from "./components/Popup";
 
 // global variables
 const database = getDatabase(firebase);
@@ -46,7 +47,7 @@ function App() {
   const isResultsPage = location.pathname === "/results";
 
   const handleStuff = (times) => {
-    // handleShit gets an object containing any combination of sunrise / sunset / duration
+    // handleStuff gets an object containing any combination of sunrise / sunset / duration
     // The new state is made from the old state plus whatever is in `times`
     setTimes({ sunrise, sunset, duration, selectedTime, ...times })
   };
@@ -64,6 +65,7 @@ function App() {
             <Results {...{ sunrise, sunset, duration, selectedTime }} />
           } />
         </Routes>
+        <Popup />
         <Footer />
       </div>
     </div>
