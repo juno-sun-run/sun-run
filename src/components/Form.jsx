@@ -88,8 +88,8 @@ const Form = ({ handleShit }) => {
 
   return (
     <div className="columnsContainer">
-      <form onSubmit={handleSubmit}>
-        <div className="leftColumn">
+      <div className="leftColumn">
+        <form onSubmit={handleSubmit}>
           <Calendar className="calendar" onChange={handleDateChange} />
           <Location
             value={input}
@@ -97,6 +97,7 @@ const Form = ({ handleShit }) => {
             places={places}
             showSuggestions={showSuggestions}
           />
+          </form>
         </div>
         <div className="rightColumn">
           <RunTime
@@ -114,7 +115,6 @@ const Form = ({ handleShit }) => {
             </button>
           </Link>
         </div>
-      </form>
     </div>
   );
 }

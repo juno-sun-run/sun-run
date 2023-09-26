@@ -4,24 +4,8 @@ import Sunset from "../assets/Sunset";
 
 function RunTime({ selectedTime, duration, handleSunSelection, handleDuration }) {
   return (
-    <div className="runTime">
-      <button
-        className="sunrise"
-        type="button"
-        value="Sunrise"
-        onClick={handleSunSelection}
-      >
-        <Sunrise />
-      </button>
-      <button
-        className="sunset"
-        type="button"
-        value="Sunset"
-        onClick={handleSunSelection}
-      >
-        <Sunset />
-      </button>
-      {selectedTime === "Sunset" && (
+    <div>
+        {selectedTime === "Sunset" && (
         <label>
           How long would you like to run for?
           <select value={duration} onChange={handleDuration} required>
@@ -37,6 +21,24 @@ function RunTime({ selectedTime, duration, handleSunSelection, handleDuration })
           </select>
         </label>
       )}
+      <div className="runTime">
+        <button
+          className="sunrise"
+          type="button"
+          value="Sunrise"
+          onClick={handleSunSelection}
+        >
+          <Sunrise />
+        </button>
+        <button
+          className="sunset"
+          type="button"
+          value="Sunset"
+          onClick={handleSunSelection}
+        >
+          <Sunset />
+        </button>
+      </div>
     </div>
   );
 }
