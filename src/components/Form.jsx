@@ -16,6 +16,7 @@ const Form = ({ handleStuff }) => {
   const [selectedTime, setSelectedTime] = useState("Sunrise");
   const [selectedLocation, setSelectedLocation] = useState(false);
   const [duration, setDuration] = useState(0);
+  const [times, setTimes] = useState({});
 
   const geoUrl = "https://geocode.maps.co/search";
   const sunUrl = "https://api.sunrise-sunset.org/json";
@@ -44,12 +45,12 @@ const Form = ({ handleStuff }) => {
     setDate(newDate);
   };
 
-  const handleSunSelection = ({ currentTarget: { value: selectedTime }}) => {
+  const handleSunSelection = ({ currentTarget: { value: selectedTime } }) => {
     setSelectedTime(selectedTime);
     handleStuff({ selectedTime });
   };
 
-  const handleDuration = ({ target: { value: duration }}) => {
+  const handleDuration = ({ target: { value: duration } }) => {
     setDuration(duration);
     handleStuff({ duration });
   };
@@ -79,8 +80,12 @@ const Form = ({ handleStuff }) => {
     });
     console.log(sunResponse);
 
-    const sunrise = getUserTimezoneDate(new Date(sunResponse.data.results.sunrise));
-    const sunset = getUserTimezoneDate(new Date(sunResponse.data.results.sunset));
+    const sunrise = getUserTimezoneDate(
+      new Date(sunResponse.data.results.sunrise)
+    );
+    const sunset = getUserTimezoneDate(
+      new Date(sunResponse.data.results.sunset)
+    );
     console.log(sunrise);
     console.log(sunset);
     handleStuff({ sunrise, sunset, selectedTime });
@@ -107,16 +112,13 @@ const Form = ({ handleStuff }) => {
             handleDuration={handleDuration}
           />
           <Link to="/results">
-            <button
-              className="submit"
-              disabled={!selectedLocation}
-            >
+            <button className="submit" disabled={!selectedLocation}>
               Let's go!
             </button>
           </Link>
         </div>
     </div>
   );
-}
+};
 
 export default Form;

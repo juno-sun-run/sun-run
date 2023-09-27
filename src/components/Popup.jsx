@@ -2,14 +2,18 @@ import React, { useState } from "react";
 
 function Popup() {
   const [showPopup, setShowPopup] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
+    setButtonClicked(!showPopup);
   };
 
   return (
     <>
-      <button onClick={togglePopup}>Saved Runs</button>
+      <button onClick={togglePopup} disabled={buttonClicked}>
+        Saved Runs
+      </button>
       {showPopup && (
         <>
           <div className="savedRuns">
@@ -27,4 +31,4 @@ function Popup() {
   );
 }
 
-export default Popup
+export default Popup;
