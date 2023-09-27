@@ -8,7 +8,7 @@ import RunTime from "./RunTime";
 import Location from "./Location";
 import getUserTimezoneDate from "../helpers/getUserTimezoneDate";
 
-const Form = ({ handleShit }) => {
+const Form = ({ handleStuff }) => {
   const [places, setPlaces] = useState([]);
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
