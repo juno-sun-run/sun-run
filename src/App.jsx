@@ -66,7 +66,14 @@ function App() {
       <div className="wrapper">
         <Header />
         <Routes>
-          <Route path="/" element={<Form {...{ handleStuff }} />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Form {...{ handleStuff }} /> <Popup />
+              </>
+            }
+          />
           <Route
             path="/results"
             element={
@@ -74,7 +81,6 @@ function App() {
             }
           />
         </Routes>
-        <Popup />
         <Footer />
       </div>
     </div>
