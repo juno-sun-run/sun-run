@@ -6,7 +6,10 @@ import Header from "./Header";
 import Footer from "./Footer";
 import RunTime from "./RunTime";
 import Location from "./Location";
+import { userRunsRef } from "../helpers/data";
 import getUserTimezoneDate from "../helpers/getUserTimezoneDate";
+import { push } from "firebase/database";
+import formatTime from "../helpers/formatTime";
 
 const Form = ({ handleStuff }) => {
   const [places, setPlaces] = useState([]);
@@ -16,7 +19,7 @@ const Form = ({ handleStuff }) => {
   const [selectedTime, setSelectedTime] = useState("Sunrise");
   const [selectedLocation, setSelectedLocation] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [times, setTimes] = useState({});
+  const [{ sunrise, sunset }, setTimes] = useState({});
 
   const geoUrl = "https://geocode.maps.co/search";
   const sunUrl = "https://api.sunrise-sunset.org/json";
@@ -55,6 +58,18 @@ const Form = ({ handleStuff }) => {
     handleStuff({ duration });
   };
 
+  const handleSave = (event) => {
+    const formData = {
+      sunrise: sunrise.getTime(),
+      sunset: sunset.getTime(),
+      date: date.getTime(),
+      duration,
+      selectedTime,
+    };
+    push(userRunsRef, formData);
+    const sunriseTime = formatTime(sunrise);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(places);
@@ -89,6 +104,7 @@ const Form = ({ handleStuff }) => {
     console.log(sunrise);
     console.log(sunset);
     handleStuff({ sunrise, sunset, selectedTime });
+    setTimes({ sunrise, sunset });
   };
 
   return (
@@ -116,6 +132,9 @@ const Form = ({ handleStuff }) => {
               Let's go!
             </button>
           </Link>
+          <button onClick={handleSave} type="button">
+            Save Run
+          </button>
         </div>
     </div>
   );
