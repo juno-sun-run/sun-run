@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { userRunsRef } from "../helpers/data";
-import { onValue, update } from "firebase/database";
+import { onValue } from "firebase/database";
 import formatTime from "../helpers/formatTime";
+import formatDate from "../helpers/formatDate";
 
 function Popup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -31,13 +32,21 @@ function Popup() {
           <div className="savedRuns">
             <h3>Saved Runs</h3>
             {Object.entries(savedRuns).map(([key, run]) => {
+              const date = formatDate(new Date(run.date))
+              const {duration} = run
+              const selectedTime = run.selectedTime.toLowerCase()
+              const time = formatTime(new Date(run[selectedTime]))
+
               return (
-                <ul key={key}>
-                  <li>Sunrise: {formatTime(new Date(run.sunrise))}</li>
-                  <li>Sunset: {formatTime(new Date(run.sunset))}</li>
-                  <li>Duration: {run.duration}</li>
-                  <li>Selected Time: {run.selectedTime}</li>
-                </ul>
+                  <section key={key}>
+                    <h2>Your upcoming run on: {date}</h2>
+                      {selectedTime === "sunrise" ? (
+                        <p className="sunrise">Leave at {time} to catch the {selectedTime}.</p>
+                        ) : (
+                        <p className="sunset">For a {duration} minute round trip, leave at {time} to be back before {selectedTime}.</p>
+                      )
+                    }
+                  </section>
               );
             })}
             <button onClick={togglePopup}>Close</button>
