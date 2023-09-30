@@ -67,7 +67,6 @@ const Form = ({ handleStuff }) => {
       selectedTime,
     };
     push(userRunsRef, formData);
-    const sunriseTime = formatTime(sunrise);
   };
 
   const handleSubmit = async (event) => {
@@ -111,7 +110,7 @@ const Form = ({ handleStuff }) => {
     <div className="columnsContainer">
       <div className="leftColumn">
         <form onSubmit={handleSubmit}>
-          <Calendar className="calendar" onChange={handleDateChange} />
+          <Calendar className="calendar" onChange={handleDateChange} value={date}/>
           <Location
             value={input}
             onChange={handleInputChange}
