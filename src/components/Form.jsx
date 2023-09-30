@@ -128,11 +128,11 @@ const Form = ({ handleStuff }) => {
           />
           <Link to="/results">
             <button className="submit" disabled={!selectedLocation}>
-              Let's go!
+              Run Now!
             </button>
           </Link>
-          <button onClick={handleSave} type="button">
-            Save Run
+          <button onClick={handleSave} type="button" className="saveRun">
+            Schedule Run For Later 💪
           </button>
         </div>
     </div>

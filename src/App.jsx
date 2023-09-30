@@ -13,9 +13,6 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import Results from "./components/Results";
 import Footer from "./components/Footer";
-import formatTime from "./helpers/formatTime";
-import getUserTimezoneDate from "./helpers/getUserTimezoneDate";
-import { useAccessors } from "react-widgets/cjs/Accessors";
 import firebase from "./components/Firebase.jsx";
 import { getDatabase, ref, child, onValue, set, push } from "firebase/database";
 import Popup from "./components/Popup";
@@ -49,6 +46,11 @@ function AppRouter() {
 
 function App() {
   const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({});
+  const [theme, setTheme] = useState("sunrise")
+
+  const handleTheme = () => {
+    setTheme((theme) => (theme === "sunrise" ? "sunset" : "sunrise"))
+  }
 
   const location = useLocation();
   const isResultsPage = location.pathname === "/results";
@@ -61,10 +63,11 @@ function App() {
 
   return (
     <div
-      className={`${isResultsPage ? "resultsBackground" : "mainBackground"}`}
+      className={`${isResultsPage ? "resultsBackground" : "mainBackground"} ${theme === "sunset" ? "sunsetTheme" : ""}`}
     >
       <div className="wrapper">
         <Header />
+        <button onClick={handleTheme}>Toggle Theme ({theme === "light" ? "Dark" : "Light"})</button>
         <Routes>
           <Route
             path="/"

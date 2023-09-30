@@ -25,7 +25,7 @@ function Popup() {
   return (
     <>
       <button onClick={togglePopup} disabled={buttonClicked}>
-        Saved Runs
+        View Upcoming Runs
       </button>
       {showPopup && (
         <>

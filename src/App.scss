@@ -18,15 +18,14 @@ h1 {
   margin: 0;
 }
 
+.resultsBackground,
 .mainBackground {
   background: linear-gradient(#a28ef0, #da83d8, #fd7fa4, #ff8e74, #ff9b58);
   height: 100vh;
   width: 100vw;
 }
 
-.resultsBackground {
-  background-color: red;
-}
+ 
 
 .location {
   display: flex;
@@ -112,7 +111,7 @@ h1 {
   }
 }
 
-.submit {
+.submit, .saveRun {
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 1px;
@@ -145,6 +144,10 @@ h1 {
     top: 0px;
     left: 0px;
   }
+}
+
+.sunsetTheme {
+  background: linear-gradient(#ffa43d, #ffad21, #ff981e, #ff6f26);
 }
 
 footer {
