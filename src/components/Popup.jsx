@@ -24,9 +24,12 @@ function Popup() {
 
   return (
     <>
-      <button onClick={togglePopup} disabled={buttonClicked}>
+    {/* <div className="futureRuns"> */}
+    <div className="buttonContainer">
+      <button className ="viewRuns" onClick={togglePopup} disabled={buttonClicked}>
         View Upcoming Runs
       </button>
+      </div>
       {showPopup && (
         <>
           <div className="savedRuns">
@@ -36,7 +39,7 @@ function Popup() {
               const {duration} = run
               const selectedTime = run.selectedTime.toLowerCase()
               const time = formatTime(new Date(run[selectedTime]))
-
+    
               return (
                   <section key={key}>
                     <h2>Your upcoming run on: {date}</h2>
@@ -51,8 +54,10 @@ function Popup() {
             })}
             <button onClick={togglePopup}>Close</button>
           </div>
+          
         </>
       )}
+      {/* </div> */}
     </>
   );
 }

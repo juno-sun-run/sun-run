@@ -131,9 +131,11 @@ const Form = ({ handleStuff }) => {
               Run Now!
             </button>
           </Link>
-          <button onClick={handleSave} type="button" className="saveRun">
-            Schedule Run For Later 💪
-          </button>
+          <div className="buttonContainer">
+            <button onClick={handleSave} type="button" className="saveRun">
+              Schedule Run For Later 💪
+            </button>
+          </div>
         </div>
     </div>
   );

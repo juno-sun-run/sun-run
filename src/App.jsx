@@ -62,31 +62,39 @@ function App() {
   };
 
   return (
-    <div
+  <div
       className={`${isResultsPage ? "resultsBackground" : "mainBackground"} ${theme === "sunset" ? "sunsetTheme" : ""}`}
     >
-      <div className="wrapper">
-        <Header />
-        <button onClick={handleTheme}>Toggle Theme ({theme === "light" ? "Dark" : "Light"})</button>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Form {...{ handleStuff }} /> <Popup />
-              </>
-            }
-          />
-          <Route
-            path="/results"
-            element={
-              <Results {...{ sunrise, sunset, duration, selectedTime }} />
-            }
-          />
-        </Routes>
-        <Footer />
-      </div>
+    <div className="wrapper">
+      <Header />
+    <label className="themeToggleSwitch">
+      <input
+        type="checkbox"
+        className="themeToggleInput"
+        checked={theme === "sunset"}
+        onChange={handleTheme}
+      />
+      <span className="themeToggleSlider"></span>
+    </label>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Form {...{ handleStuff }} /> <Popup />
+            </>
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <Results {...{ sunrise, sunset, duration, selectedTime }} />
+          }
+        />
+      </Routes>
+      <Footer />
     </div>
+  </div>
   );
 }
 
