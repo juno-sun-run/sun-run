@@ -107,35 +107,33 @@ const Form = ({ handleStuff }) => {
   };
 
   return (
-    <div className="columnsContainer">
-      <div className="leftColumn">
-        <form onSubmit={handleSubmit}>
-          <Calendar className="calendar" onChange={handleDateChange} value={date}/>
-          <Location
-            value={input}
-            onChange={handleInputChange}
-            places={places}
-            showSuggestions={showSuggestions}
-          />
-          </form>
-        </div>
-        <div className="rightColumn">
-          <RunTime
-            selectedTime={selectedTime}
-            duration={duration}
-            handleSunSelection={handleSunSelection}
-            handleDuration={handleDuration}
-          />
+    <>
+      <form onSubmit={handleSubmit}>
+        <Calendar className="calendar" onChange={handleDateChange} value={date} />
+        <Location
+          value={input}
+          onChange={handleInputChange}
+          places={places}
+          showSuggestions={showSuggestions}
+        />
+        <RunTime
+          selectedTime={selectedTime}
+          duration={duration}
+          handleSunSelection={handleSunSelection}
+          handleDuration={handleDuration}
+        />
+        <div className="formButtonContainer">
           <Link to="/results">
             <button className="submit" disabled={!selectedLocation}>
               Run Now!
             </button>
           </Link>
-          <button onClick={handleSave} type="button" className="saveRun">
+          <button onClick={handleSave} type="button" className="saveRun" disabled={!selectedLocation}>
             Schedule Run For Later 💪
           </button>
         </div>
-    </div>
+      </form>
+    </>
   );
 };
 

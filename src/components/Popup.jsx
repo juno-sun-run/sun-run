@@ -24,13 +24,13 @@ function Popup() {
 
   return (
     <>
-      <button onClick={togglePopup} disabled={buttonClicked}>
+      <button onClick={togglePopup} disabled={buttonClicked} className="saveRunButton">
         View Upcoming Runs
       </button>
       {showPopup && (
         <>
           <div className="savedRuns">
-            <h3>Saved Runs</h3>
+            <h2>Saved Runs</h2>
             {Object.entries(savedRuns).map(([key, run]) => {
               const date = formatDate(new Date(run.date))
               const {duration} = run
@@ -39,7 +39,7 @@ function Popup() {
 
               return (
                   <section key={key}>
-                    <h2>Your upcoming run on: {date}</h2>
+                    <h3>Your upcoming run on: {date}</h3>
                       {selectedTime === "sunrise" ? (
                         <p className="sunrise">Leave at {time} to catch the {selectedTime}.</p>
                         ) : (

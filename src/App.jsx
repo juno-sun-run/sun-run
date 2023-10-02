@@ -67,7 +67,7 @@ function App() {
     >
       <div className="wrapper">
         <Header />
-        <button onClick={handleTheme}>Toggle Theme ({theme === "light" ? "Dark" : "Light"})</button>
+        <label class="toggle"><input onClick={handleTheme} type="checkbox" className="toggler"/></label>
         <Routes>
           <Route
             path="/"
@@ -84,8 +84,8 @@ function App() {
             }
           />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

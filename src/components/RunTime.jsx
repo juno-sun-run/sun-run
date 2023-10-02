@@ -4,9 +4,9 @@ import Sunset from "../assets/Sunset";
 
 function RunTime({ selectedTime, duration, handleSunSelection, handleDuration }) {
   return (
-    <div>
+    <div className="suggestions">
         {selectedTime === "Sunset" && (
-        <label>
+        <label className="sunsetLabel">
           How long would you like to run for?
           <select value={duration} onChange={handleDuration} required>
             <option value="0" disabled={true}>
