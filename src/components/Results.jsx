@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import formatTime from "../helpers/formatTime";
 
-
 const Results = ({ sunset, sunrise, duration, selectedTime }) => {
   if (!sunrise || !sunset) return null;
 
@@ -17,18 +16,19 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
   console.log(`Leave at ${sunriseTimeFormatted} to run at Sunrise`);
   return (
     <>
-    {selectedTime === "Sunset" ? (
-      <p>Start your run at {sunsetTimeFormatted}!</p>
-    ) : (
-      <p>Start your run at {sunriseTimeFormatted}!</p>
-    )}
-      <p>{selectedTime}</p>
-      {/* <Link to="/">GO BAAACK</Link> */}
-      <div className="goBack">
-        <button onClick={() => window.history.back()}>Go BAAACK!</button>
+      <div className="resultsContainer">
+        {selectedTime === "Sunset" ? (
+          <p>Start your run at {sunsetTimeFormatted}!</p>
+        ) : (
+          <p>Start your run at {sunriseTimeFormatted}!</p>
+        )}
+        <p>{selectedTime}</p>
       </div>
+      <Link to="/">
+        <button>GO BAAACK!</button>
+      </Link>
     </>
   );
-}
+};
 
 export default Results;
