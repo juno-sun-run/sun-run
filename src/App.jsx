@@ -85,7 +85,7 @@ function App() {
           />
         </Routes>
       </div>
-      <Footer />
+      <Footer isResultsPage={isResultsPage}/>
     </div>
   );
 }

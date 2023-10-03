@@ -23,7 +23,10 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
       <p>Start your run at {sunriseTimeFormatted}!</p>
     )}
       <p>{selectedTime}</p>
-      <Link to="/">GO BAAACK</Link>
+      {/* <Link to="/">GO BAAACK</Link> */}
+      <div className="goBack">
+        <button onClick={() => window.history.back()}>Go BAAACK!</button>
+      </div>
     </>
   );
 }
