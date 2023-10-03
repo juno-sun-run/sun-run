@@ -18,12 +18,12 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
         {selectedTime === "Sunset" ? (
           <>
             <p>Start your run at {sunsetTimeFormatted}!</p>
-            <Sunset />
+            <Sunset alt="Sunset icon"/>
           </>
         ) : (
           <>
             <p>Start your run at {sunriseTimeFormatted}!</p>
-            <Sunrise />
+            <Sunrise alt="Sunrise icon"/>
           </>
         )}
       </div>

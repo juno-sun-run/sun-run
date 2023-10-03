@@ -28,7 +28,7 @@ function RunTime({ selectedTime, duration, handleSunSelection, handleDuration })
           value="Sunrise"
           onClick={handleSunSelection}
         >
-          <Sunrise />
+          <Sunrise alt="Sunrise icon"/>
         </button>
         <button 
           className={`${selectedTime === "Sunset" ? "sunset sunsetSelected" : "sunset"}`}
@@ -36,7 +36,7 @@ function RunTime({ selectedTime, duration, handleSunSelection, handleDuration })
           value="Sunset"
           onClick={handleSunSelection}
         >
-          <Sunset />
+          <Sunset alt="Sunset icon"/>
         </button>
       </div>
     </div>
