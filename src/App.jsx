@@ -7,7 +7,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import "../styles/App.css";
+import "./App.scss";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
 import Form from "./components/Form";
