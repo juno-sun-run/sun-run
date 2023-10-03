@@ -1,33 +1,40 @@
 @use "../styles/partials/_setup.scss";
 @use "../styles/partials/popUp";
-@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
 
 body {
-  background: linear-gradient(-45deg, #a28ef0, #da83d8, #fd7fa4, #ff8e74, #ff9b58);
+  background: linear-gradient(
+    -45deg,
+    #a28ef0,
+    #da83d8,
+    #fd7fa4,
+    #ff8e74,
+    #ff9b58
+  );
   background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
 
   .sunsetTheme {
     background: linear-gradient(-45deg, #ffa43d, #ffad21, #ff981e, #ff6f26);
     background-size: 400% 400%;
-	  animation: gradient 15s ease infinite;
+    animation: gradient 15s ease infinite;
   }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-button, input {
+button,
+input {
   border: none;
   font-size: 16px;
   font-weight: 200;
@@ -49,13 +56,12 @@ button, input {
   text-align: center;
 }
 
-
 h1 {
   margin: 0.5rem 0;
   color: white;
-  font-family: 'Fascinate', cursive;
+  font-family: "Fascinate", cursive;
   font-size: 6rem;
-  
+
   svg {
     font-size: 6rem;
     color: white;
@@ -63,17 +69,16 @@ h1 {
   }
 }
 
-
 form {
   display: flex;
   justify-content: space-evenly;
   align-items: stretch;
   flex-flow: column;
-  
+
   .location {
     display: flex;
     flex-flow: column;
-    
+
     input {
       flex-grow: 1;
       font-size: 16px;
@@ -90,7 +95,6 @@ form {
     justify-content: space-evenly;
     flex-flow: row;
   }
-
 }
 
 .saveRunButton {
@@ -128,8 +132,7 @@ form {
     border: 1px solid lightgray;
   }
 
-  .sunsetLabel
-    select {
+  .sunsetLabel select {
     margin-left: 1rem;
   }
 }
@@ -156,7 +159,6 @@ form {
   }
 }
 
-
 .toggle {
   position: absolute;
   left: 60rem;
@@ -165,17 +167,17 @@ form {
   margin-right: 1rem;
   border-radius: 1rem;
   cursor: pointer;
-  
+
   .toggler {
     appearance: none;
     cursor: pointer;
     background-color: white;
     border-radius: 4rem;
-    
+
     &:focus {
       outline: none;
     }
-    
+
     &::after {
       padding: 1.5rem;
       display: flex;
@@ -188,26 +190,26 @@ form {
       border-radius: 50%;
       box-shadow: 0 1px 2px rgba(black, 0.4);
       background-color: rgba(white, 0.75);
-      
-      margin-right: 1em;
-      }
-  
-      &:checked::after {
-        margin-left: 1em;
-        margin-right: 0;
-        
-        content: "⛅";
-      }
-    }
-  }
 
-  footer {
-    background-color: white;
-     
-    p {
-      margin: 0;
-      padding: 1.25rem 0;
-      background-color: white;
-      text-align: center;
+      margin-right: 1em;
+    }
+
+    &:checked::after {
+      margin-left: 1em;
+      margin-right: 0;
+
+      content: "⛅";
     }
   }
+}
+
+footer {
+  background-color: white;
+
+  p {
+    margin: 0;
+    padding: 1.25rem 0;
+    background-color: white;
+    text-align: center;
+  }
+}
