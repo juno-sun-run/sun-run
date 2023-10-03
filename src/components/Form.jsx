@@ -39,7 +39,6 @@ const Form = ({ handleStuff }) => {
       setPlaces(geoResponse.data);
       setSelectedLocation(true);
     } catch (error) {
-      console.error("Error fetching data:", error);
       setSelectedLocation(false);
     }
   };
@@ -71,15 +70,12 @@ const Form = ({ handleStuff }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(places);
 
     const place_id = parseInt(event.nativeEvent.submitter.value);
     const selected = places.find((place) => place.place_id === place_id);
     const { lat, lon: lng } = selected;
     setInput(selected.display_name);
     setShowSuggestions(false);
-
-    console.log(selected);
 
     const sunResponse = await axios({
       url: sunUrl,
@@ -92,7 +88,6 @@ const Form = ({ handleStuff }) => {
         date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
       },
     });
-    console.log(sunResponse);
 
     const sunrise = getUserTimezoneDate(
       new Date(sunResponse.data.results.sunrise)
@@ -100,8 +95,6 @@ const Form = ({ handleStuff }) => {
     const sunset = getUserTimezoneDate(
       new Date(sunResponse.data.results.sunset)
     );
-    console.log(sunrise);
-    console.log(sunset);
     handleStuff({ sunrise, sunset, selectedTime });
     setTimes({ sunrise, sunset });
   };

@@ -63,9 +63,7 @@ function App() {
 
   return (
     <div
-      className={`${isResultsPage ? "resultsBackground" : "mainBackground"} ${
-        theme === "sunset" ? "sunsetTheme" : ""
-      }`}
+      className={`${theme === "sunset" ? "sunsetTheme" : ""}`}
     >
       <div className="wrapper">
         <Header />

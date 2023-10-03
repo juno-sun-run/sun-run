@@ -12,10 +12,6 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
   const sunriseTimeFormatted = formatTime(sunrise);
   const sunsetTimeFormatted = formatTime(sunsetRunStartTime);
 
-  console.log(
-    `Leave at ${sunsetTimeFormatted} to run for ${duration} minutes before Sunset`
-  );
-  console.log(`Leave at ${sunriseTimeFormatted} to run at Sunrise`);
   return (
     <>
       <div className="resultsContainer">
