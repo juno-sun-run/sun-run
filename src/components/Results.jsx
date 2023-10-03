@@ -22,6 +22,8 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
         ) : (
           <p>Start your run at {sunriseTimeFormatted}!</p>
         )}
+
+        <hr></hr>
         <p>{selectedTime}</p>
       </div>
       <Link to="/">
