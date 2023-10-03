@@ -1,4 +1,4 @@
-@use "../styles/partials/variables" as *;
+@use "./variables" as *;
 
 form {
   display: flex;
@@ -18,7 +18,7 @@ form {
       padding: 1rem;
       border-radius: 1rem;
       outline: none;
-      
+
       &:hover {
         cursor: text;
       }
@@ -50,7 +50,7 @@ form {
 
   .sunsetLabel {
     color: white;
-    font-size: 1rem; 
+    font-size: 1rem;
 
     select {
       margin-left: 1rem;
@@ -85,19 +85,19 @@ form {
       box-shadow: none;
       filter: drop-shadow(0px 0px 3px #fff);
     }
-    
+
     &.sunriseSelected,
     &.sunsetSelected {
-        font-size: 11rem;
-        font-weight: 600;
-        color: #ffdd81;
-        background-color: transparent;
-        border: none;
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: none;
-        filter: drop-shadow(0px 0px 3px #fff);
+      font-size: 11rem;
+      font-weight: 600;
+      color: #ffdd81;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: none;
+      filter: drop-shadow(0px 0px 3px #fff);
     }
   }
 }

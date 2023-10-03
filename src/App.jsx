@@ -7,7 +7,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import "../styles/App.css";
+import "./App.css";
 import "react-widgets/styles.css";
 import Header from "./components/Header";
 import Form from "./components/Form";
@@ -46,11 +46,11 @@ function AppRouter() {
 
 function App() {
   const [{ sunrise, sunset, duration, selectedTime }, setTimes] = useState({});
-  const [theme, setTheme] = useState("sunrise")
+  const [theme, setTheme] = useState("sunrise");
 
   const handleTheme = () => {
-    setTheme((theme) => (theme === "sunrise" ? "sunset" : "sunrise"))
-  }
+    setTheme((theme) => (theme === "sunrise" ? "sunset" : "sunrise"));
+  };
 
   const location = useLocation();
   const isResultsPage = location.pathname === "/results";
@@ -63,11 +63,15 @@ function App() {
 
   return (
     <div
-      className={`${isResultsPage ? "resultsBackground" : "mainBackground"} ${theme === "sunset" ? "sunsetTheme" : ""}`}
+      className={`${isResultsPage ? "resultsBackground" : "mainBackground"} ${
+        theme === "sunset" ? "sunsetTheme" : ""
+      }`}
     >
       <div className="wrapper">
         <Header />
-        <label class="toggle"><input onClick={handleTheme} type="checkbox" className="toggler"/></label>
+        <label class="toggle">
+          <input onClick={handleTheme} type="checkbox" className="toggler" />
+        </label>
         <Routes>
           <Route
             path="/"
@@ -85,7 +89,7 @@ function App() {
           />
         </Routes>
       </div>
-      <Footer isResultsPage={isResultsPage}/>
+      <Footer isResultsPage={isResultsPage} />
     </div>
   );
 }

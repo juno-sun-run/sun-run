@@ -1,4 +1,4 @@
-@use "../styles/partials/variables" as *;
+@use "./variables" as *;
 
 .resultsContainer {
   margin: 0 auto;
@@ -6,13 +6,13 @@
   width: 100%;
   background-color: white;
   border-radius: 1rem;
-  
+
   p {
     font-size: 1.5rem;
   }
 
   svg {
-    color:#ffad21;
+    color: #ffad21;
     font-size: 10rem;
     font-weight: 800;
   }
