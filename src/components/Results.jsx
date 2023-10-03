@@ -27,7 +27,7 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
         <p>{selectedTime}</p>
       </div>
       <Link to="/">
-        <button>GO BAAACK!</button>
+        <button className="back">GO BAAACK!</button>
       </Link>
     </>
   );
