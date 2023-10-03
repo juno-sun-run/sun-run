@@ -69,9 +69,7 @@ function App() {
     >
       <div className="wrapper">
         <Header />
-        <label class="toggle">
-          <input onClick={handleTheme} type="checkbox" className="toggler" />
-        </label>
+        <label className="toggle"><input onClick={handleTheme} type="checkbox" className="toggler"/></label>
         <Routes>
           <Route
             path="/"
