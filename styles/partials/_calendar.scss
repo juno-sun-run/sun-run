@@ -1,0 +1,20 @@
+@use "../styles/partials/variables" as *;
+
+.calendar {
+  opacity: initial;
+  margin: 1rem 0;
+  border-radius: 20px;
+  padding: 1rem;
+
+  .rw-calendar-grid .rw-cell {
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+  }
+
+  .rw-cell.rw-state-selected {
+    background: #ff8e74;
+    color: #fff;
+    border: none;
+    opacity: inital;
+  }
+}

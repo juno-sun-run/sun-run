@@ -30,7 +30,7 @@ function Popup() {
       {showPopup && (
         <>
           <div className="savedRuns">
-            <h2>Saved Runs</h2>
+            <h2>Scheduled runs</h2>
             {Object.entries(savedRuns).map(([key, run]) => {
               const date = formatDate(new Date(run.date))
               const {duration} = run
@@ -38,8 +38,8 @@ function Popup() {
               const time = formatTime(new Date(run[selectedTime]))
 
               return (
-                  <section key={key}>
-                    <h3>Your upcoming run on: {date}</h3>
+                  <section className="runs" key={key}>
+                    <h3>{date}</h3>
                       {selectedTime === "sunrise" ? (
                         <p className="sunrise">Leave at {time} to catch the {selectedTime}.</p>
                         ) : (

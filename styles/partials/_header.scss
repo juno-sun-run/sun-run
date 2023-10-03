@@ -1,0 +1,24 @@
+@use "../styles/partials/variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Montaga&display=swap');
+
+.header {
+  h1 {
+    margin: 0.5rem 0;
+    color: white;
+    font-family: "Fascinate", cursive;
+    font-size: 6rem;
+  }
+
+  p {
+    color: white;
+    margin: 1rem 0;
+    letter-spacing: 1;
+    font-style: italic;
+  }
+
+  svg {
+    font-size: 6rem;
+    color: white;
+    padding-top: 2rem;
+  }
+}

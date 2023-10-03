@@ -1,3 +1,5 @@
+@use "../styles/partials/variables" as *;
+
 .savedRuns {
   background-color: white;
   border-radius: 1rem;
@@ -5,5 +7,38 @@
   letter-spacing: 1;
   width: 100%;
   padding: 1rem 0;
-  margin: 2.5rem 0;
+  margin: 1rem 0;
+
+  .runs {
+    margin: 1rem 2rem;
+  }
+
+  h2 {
+    text-decoration: underline;
+    color: #ff8e74;
+  }
+
+  h3 {
+    font-size: 1rem;
+    text-align: left;
+    color: #fd7fa4;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  button {
+    color: #fff;
+    background-color: #ff8e74;
+
+    &:hover {
+      background-color: #a28ef0;
+      transition: $defaultTransition;
+    }
+
+    &:active {
+      background-color: #6e5eaf;
+    }
+  }
 }

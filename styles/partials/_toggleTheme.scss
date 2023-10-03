@@ -1,0 +1,47 @@
+@use "../styles/partials/variables" as *;
+
+.toggle {
+  position: fixed;
+  top: 1rem; /* Adjust top position as needed */
+  right: 1rem; /* Adjust right position as needed */
+  padding: 0.25rem;
+  margin-right: 2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+
+  .toggler {
+    appearance: none;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::after {
+      transition: $defaultTransition;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      content: "☀️";
+      font-size: 1.5rem;
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(black, 0.4);
+      background-color: rgba(white, 0.75);
+
+      margin-right: 2em;
+    }
+
+    &:checked::after {
+      transition: $defaultTransition;
+      margin-left: 2em;
+      margin-right: 0;
+
+      content: "⛅";
+    }
+  }
+}

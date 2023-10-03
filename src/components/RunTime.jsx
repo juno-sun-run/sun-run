@@ -22,16 +22,16 @@ function RunTime({ selectedTime, duration, handleSunSelection, handleDuration })
         </label>
       )}
       <div className="runTime">
-        <button
-          className="sunrise"
+        <button 
+          className={`${selectedTime === "Sunrise" ? "sunrise sunriseSelected" : "sunrise"}`}
           type="button"
           value="Sunrise"
           onClick={handleSunSelection}
         >
           <Sunrise />
         </button>
-        <button
-          className="sunset"
+        <button 
+          className={`${selectedTime === "Sunset" ? "sunset sunsetSelected" : "sunset"}`}
           type="button"
           value="Sunset"
           onClick={handleSunSelection}

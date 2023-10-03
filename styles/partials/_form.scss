@@ -1,0 +1,103 @@
+@use "../styles/partials/variables" as *;
+
+form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  flex-flow: column;
+
+  .location {
+    display: flex;
+    flex-flow: column;
+
+    input {
+      flex-grow: 1;
+      font-size: 16px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      padding: 1rem;
+      border-radius: 1rem;
+      outline: none;
+      
+      &:hover {
+        cursor: text;
+      }
+    }
+  }
+
+  .formButtonContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row;
+  }
+
+  .saveRunButton {
+    margin-bottom: 1rem;
+  }
+}
+
+.suggestions {
+  display: flex;
+  flex-flow: column;
+  border-radius: 1;
+
+  button {
+    border-radius: 0;
+    margin: 0;
+    padding: 0.5rem;
+    border: 1px solid lightgray;
+  }
+
+  .sunsetLabel {
+    color: white;
+    font-size: 1rem; 
+
+    select {
+      margin-left: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}
+
+.runTime {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+  .sunrise,
+  .sunset {
+    font-size: 11rem;
+    font-weight: 600;
+    color: #ffcd47;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: none;
+      filter: drop-shadow(0px 0px 3px #fff);
+    }
+    
+    &.sunriseSelected,
+    &.sunsetSelected {
+        font-size: 11rem;
+        font-weight: 600;
+        color: #ffdd81;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: none;
+        filter: drop-shadow(0px 0px 3px #fff);
+    }
+  }
+}

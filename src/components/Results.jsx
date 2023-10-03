@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import formatTime from "../helpers/formatTime";
+import Sunrise from "../assets/Sunrise";
+import Sunset from "../assets/Sunset";
 
 const Results = ({ sunset, sunrise, duration, selectedTime }) => {
   if (!sunrise || !sunset) return null;
@@ -18,16 +20,19 @@ const Results = ({ sunset, sunrise, duration, selectedTime }) => {
     <>
       <div className="resultsContainer">
         {selectedTime === "Sunset" ? (
-          <p>Start your run at {sunsetTimeFormatted}!</p>
+          <>
+            <p>Start your run at {sunsetTimeFormatted}!</p>
+            <Sunset />
+          </>
         ) : (
-          <p>Start your run at {sunriseTimeFormatted}!</p>
+          <>
+            <p>Start your run at {sunriseTimeFormatted}!</p>
+            <Sunrise />
+          </>
         )}
-
-        <hr></hr>
-        <p>{selectedTime}</p>
       </div>
       <Link to="/">
-        <button className="back">GO BAAACK!</button>
+        <button className="back">Go Back</button>
       </Link>
     </>
   );
