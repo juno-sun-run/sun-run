@@ -61,6 +61,11 @@ form {
       border-radius: 1rem;
       cursor: pointer;
       outline: none;
+
+      &:hover {
+        box-shadow: $glow;
+        transition: $defaultTransition;
+      }
     }
   }
 }
